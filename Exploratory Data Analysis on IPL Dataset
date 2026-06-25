@@ -1,0 +1,62 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+data = {
+    "Season": [2020, 2020, 2021, 2021, 2022, 2022, 2023, 2023],
+    "Winner": ["MI", "CSK", "CSK", "KKR", "GT", "RR", "CSK", "MI"],
+    "Top_Scorer": [
+        "KL Rahul",
+        "Faf du Plessis",
+        "Ruturaj Gaikwad",
+        "Shubman Gill",
+        "Jos Buttler",
+        "Sanju Samson",
+        "Shubman Gill",
+        "Rohit Sharma"
+    ],
+    "Stadium": [
+        "Dubai",
+        "Mumbai",
+        "Chennai",
+        "Kolkata",
+        "Ahmedabad",
+        "Jaipur",
+        "Chennai",
+        "Mumbai"
+    ]
+}
+df = pd.DataFrame(data)
+print("\n========== IPL DATASET ==========")
+print(df)
+print("\n========== DATASET INFO ==========")
+df.info()
+print("\n========== MOST WINNING TEAMS ==========")
+winning_teams = df["Winner"].value_counts()
+print(winning_teams)
+plt.figure(figsize=(8, 5))
+winning_teams.plot(kind="bar")
+plt.title("Most Winning IPL Teams")
+plt.xlabel("Teams")
+plt.ylabel("Number of Wins")
+plt.show()
+print("\n========== TOP SCORERS ==========")
+top_scorers = df["Top_Scorer"].value_counts()
+print(top_scorers)
+plt.figure(figsize=(8, 5))
+top_scorers.plot(kind="bar")
+plt.title("Top Scorers in IPL")
+plt.xlabel("Players")
+plt.ylabel("Appearances")
+plt.show()
+print("\n========== STADIUM TRENDS ==========")
+stadium_trends = df["Stadium"].value_counts()
+print(stadium_trends)
+plt.figure(figsize=(8, 5))
+stadium_trends.plot(kind="pie", autopct="%1.1f%%")
+plt.title("Matches by Stadium")
+plt.ylabel("")
+plt.show()
+print("\n========== IPL ANALYSIS SUMMARY ==========")
+print("Most Successful Team :", winning_teams.idxmax())
+print("Top Scorer :", top_scorers.idxmax())
+print("Most Used Stadium :", stadium_trends.idxmax())
+print("\nProject Completed Successfully!")
